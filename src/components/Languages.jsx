@@ -1,15 +1,16 @@
 import { languages } from "../data/languages"
+import { clsx } from 'clsx';
 
-export default function Language() {
-  
-  const languagesList = languages.map((language) => (
-    <div 
+export default function Language(props) {
+
+  const languagesList = languages.map((language, index) => (
+    <span 
       key={language.name} 
       style={{backgroundColor: language.backgroundColor, color: language.color}}
-      className="chip"
+      className={clsx("chip", index < props.wrongGuessCount && 'lost')}
     >
       {language.name}
-    </div>
+    </span>
   ))
 
   return (

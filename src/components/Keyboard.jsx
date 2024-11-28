@@ -5,6 +5,7 @@ export default function Keyboard(props) {
   const keyboardElements = props.alphabet.split("").map(letter => (
     <button 
       key={letter}
+      disabled={props.isGameOver}
       className={
         guesses.includes(letter) ?
            (currentWord.includes(letter) ? 'correct-guess' : 'incorrect-guess') :

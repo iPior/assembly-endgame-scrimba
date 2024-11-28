@@ -1,14 +1,22 @@
+import { clsx } from 'clsx';
 
 export default function Letters(props) {
-  const currentWord = props.currentWord;
 
-  const letterElements = currentWord.split("").map((letter, index) => (
-    <span 
-    key={index}
-    >
-      {letter.toUpperCase()}
-    </span>
-  ));
+  const letterElements = props.currentWord.split("").map((letter, index) => {
+    const shouldRevealLetter = props.isGameOver || props.guesses.includes(letter)
+
+    return (
+      <span 
+        key={index}
+        className={clsx(
+          props.isGameOver && !props.guesses.includes(letter) && "missed-letter"
+        )}
+      >
+        {shouldRevealLetter && letter.toUpperCase()}
+      </span> 
+    )}
+  );
+
 
   return (
     <section className="word">
